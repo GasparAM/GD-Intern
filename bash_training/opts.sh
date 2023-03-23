@@ -5,7 +5,7 @@ opts="o:n:d"
 doTheMath () {
     WRKRND=1
     NUM=$(echo ${OPTARG} | awk '{print $1}')
-    echo $OPTARG
+    # echo $OPTARG
     for i in $OPTARG; do
         #Workaround to skip the first loop
         if [[ $WRKRND == 1 ]]; then
@@ -30,7 +30,7 @@ while getopts $opts arg; do
             ;;
         n)
             doTheMath
-            # echo $NUM
+            echo $NUM
             # echo $@
             # echo $OPTARG
             ;;
