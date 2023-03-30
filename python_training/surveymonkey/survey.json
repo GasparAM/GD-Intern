@@ -1,0 +1,83 @@
+{
+  "title": "Important survey for serious people",
+  "pages": [
+    {
+      "questions": [
+        {
+          "headings": [
+            {
+              "heading": "This is a sample survey created via python api calls"
+            }
+          ],
+          "position": 1,
+          "family": "single_choice",
+          "subtype": "vertical",
+          "answers": {
+            "choices": [
+              {
+                "text": "True"
+              },
+              {
+                "text": "False"
+              }
+            ]
+          }
+        },
+        {
+          "headings": [
+            {
+              "heading": "Please select your drink of choice"
+            }
+          ],
+          "position": 2,
+          "family": "single_choice",
+          "subtype": "vertical",
+          "answers": {
+            "choices": [
+              {
+                "text": "Water"
+              },
+              {
+                "text": "Sand"
+              }
+            ],
+            "other": [
+              {
+                "text": "Other",
+                "num_chars": 100,
+                "num_lines": 3
+              }
+            ]
+          }
+        },
+        {
+          "headings": [
+            {
+              "heading": "Your prefered method of keeping the doctor away"
+            }
+          ],
+          "position": 3,
+          "family": "single_choice",
+          "subtype": "vertical",
+          "answers": {
+            "choices": [
+              {
+                "text": "Apples"
+              },
+              {
+                "text": "Nuclear weapons"
+              }
+            ],
+            "other": [
+              {
+                "text": "Other",
+                "num_chars": 100,
+                "num_lines": 3
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
