@@ -4,7 +4,7 @@ import json
 conn = http.client.HTTPSConnection("api.surveymonkey.com")
 
 payload = open("survey.json").read()
-
+cont = "{\"name\":\"My Contact list\"}"
 
 
 headers = {
@@ -16,7 +16,15 @@ headers = {
 # conn.request("POST", "/v3/surveys/", payload, headers)
 # conn.request("GET", "/v3/surveys/", headers=headers)
 # conn.request("GET", "/v3/collectors/511667704", headers=headers)
-# conn.request("POST", "/v3/contacts", "{\"email\":\"gavetisyan@griddynamics.com\"}", headers)
+# conn.request("POST", "/v3/contact_lists", cont, headers)
+conn.request("POST", "/v3/contact_lists", cont, headers)
+# f = json.loads(json.dumps(f))
+# print(f[id])
+
+# for i in open('email.txt').read().splitlines():
+#     email = "{\"email\":\"" + i +"\"}"
+#     # print(email)
+#     conn.request("POST", "/v3/contact_lists/241961157/contacts", email, headers)
 
 res = conn.getresponse()
 data = res.read()
