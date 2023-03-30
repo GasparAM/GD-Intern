@@ -11,7 +11,7 @@ import subprocess
 for i in sys.argv:
     match i:
         case "-c":
-            print("cpu info")
+            print("CPU:", subprocess.getoutput("cat /proc/cpuinfo | grep -m 1 'model name"))
         case "-d":
             # Not gonna work on macOS
             inf = open("/etc/os-release").readlines()
@@ -20,11 +20,13 @@ for i in sys.argv:
                 if re.search('PRETTY_NAME', i):
                     print("The Distribution is:", i.split('"')[-2])
         case "-m":
-            print("mem")
+            print("Memory total:", subprocess.getoutput("free -h | grep Mem").split(' ')[1])
+            print("Memory used:", subprocess.getoutput("free -h | grep Mem").split(' ')[2])
+            print("Memory free:", subprocess.getoutput("free -h | grep Mem").split(' ')[3])
         case "-u":
             print("Current user:", subprocess.getoutput("whoami"))
         case "-l":
             print("Load average:", open("/proc/loadavg").read())
         case "-i":
-            print("ip")
+            print("Internal IP:", subprocess.getoutput('ifconfig | grep "broadcast"').split(' ')[1])
 
