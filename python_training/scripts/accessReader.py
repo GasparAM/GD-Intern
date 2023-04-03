@@ -4,16 +4,14 @@
 
 import sys
 
-
 file = open(sys.argv[len(sys.argv) - 1]).readlines()
-
 dict = {}
 
 def readLog():
     for i in file:
-        if i.split('"')[-2] in dict:
+        try:
             dict[i.split('"')[-2]] += 1
-        else:
+        except:
             dict[i.split('"')[-2]] = 1
     for i in dict:
         print(dict[i], "   ", i)

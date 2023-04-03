@@ -5,9 +5,9 @@ def count():
     dict = {}
     text = input("Please provide the input string: ")
     for i in text:
-        if i in dict:
+        try:
             dict[i] += 1
-        else:
+        except:
             dict[i] = 1
     print(dict)
 

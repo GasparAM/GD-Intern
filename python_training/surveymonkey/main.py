@@ -13,20 +13,10 @@ headers = {
     'Authorization': "Bearer X3k4koLgkvsFaCDiOVh-Umr20W50uaTeJ8VvtZQBMRujmTlhbVEgNSp23X-ZToe264jYFSkpzxU.Imvif66mywLKL3b.naLyZyZHiR5bvPeqyFTkRubV6fMGIWG6lzlL"
     }
 
-# conn.request("POST", "/v3/surveys/", payload, headers)
-# conn.request("GET", "/v3/surveys/", headers=headers)
-# conn.request("GET", "/v3/collectors/511667704", headers=headers)
-# conn.request("POST", "/v3/contact_lists", cont, headers)
-conn.request("POST", "/v3/contact_lists", cont, headers)
-# f = json.loads(json.dumps(f))
-# print(f[id])
+conn.request("POST", "/v3/surveys/", payload, headers)
+data = conn.getresponse().read()
 
-# for i in open('email.txt').read().splitlines():
-#     email = "{\"email\":\"" + i +"\"}"
-#     # print(email)
-#     conn.request("POST", "/v3/contact_lists/241961157/contacts", email, headers)
+survey_url = json.loads(data.decode("utf-8"))['preview']
 
-res = conn.getresponse()
-data = res.read()
 
-print(data.decode("utf-8"))
+print(f"The created survey URL is: {survey_url}")
