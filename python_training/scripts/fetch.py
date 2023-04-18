@@ -11,7 +11,7 @@ import subprocess
 for i in sys.argv:
     match i:
         case "-c":
-            print("CPU:", subprocess.getoutput("cat /proc/cpuinfo | grep -m 1 'model name"))
+            print("CPU:", subprocess.getoutput("cat /proc/cpuinfo | grep -m 1 'model name'"))
         case "-d":
             # Not gonna work on macOS
             inf = open("/etc/os-release").readlines()
