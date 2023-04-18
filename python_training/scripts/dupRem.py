@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Given a list of integers. Remove duplicates from the list and create a tuple. 
 # Find the minimum and maximum number.
 

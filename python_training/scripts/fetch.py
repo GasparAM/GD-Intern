@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Write a script that gets system information like distro info, memory(total, used, free), 
 # CPU info (model, core numbers, speed), current user, system load average, and IP address. 
 # Use arguments for specifying resources. (For example, -d for distro -m for memory, -c for CPU,
