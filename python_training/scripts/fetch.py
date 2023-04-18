@@ -29,4 +29,17 @@ for i in sys.argv:
             print("Load average:", open("/proc/loadavg").read())
         case "-i":
             print("Internal IP:", socket.gethostbyname(socket.gethostname()))
+        case "-h":
+            print("""A fetch script for getting system information written in Python 3.11 
+            \nUsage: 
+            \n-c     Prints CPU info 
+            \n-d     Prints distribution 
+            \n-m     Prints memory info 
+            \n-u     Prints current user
+            \n-l     Prints load average
+            \n-i     Prints internal IP
+            \n-h     Prints this menu
+            """)
+        case _:
+            print("Use -h to see the usage menu")
 
