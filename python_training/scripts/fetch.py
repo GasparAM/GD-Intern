@@ -20,9 +20,9 @@ for i in sys.argv:
                 if re.search('PRETTY_NAME', i):
                     print("The Distribution is:", i.split('"')[-2])
         case "-m":
-            print("Memory total:", subprocess.getoutput("free -h | grep Mem").split(' ')[1])
-            print("Memory used:", subprocess.getoutput("free -h | grep Mem").split(' ')[2])
-            print("Memory free:", subprocess.getoutput("free -h | grep Mem").split(' ')[3])
+            print("Memory total:", subprocess.getoutput("free -h | grep Mem | tr -s ' '").split(' ')[1])
+            print("Memory used:", subprocess.getoutput("free -h | grep Mem | tr -s ' '").split(' ')[2])
+            print("Memory free:", subprocess.getoutput("free -h | grep Mem | tr -s ' '").split(' ')[3])
         case "-u":
             print("Current user:", subprocess.getoutput("whoami"))
         case "-l":
