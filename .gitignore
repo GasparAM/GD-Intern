@@ -1,0 +1,10 @@
+python_training/scripts/lib
+python_training/scripts/bin
+python_training/scripts/include
+python_training/scripts/pyenv.cfg
+
+
+python_training/surveymonkey/lib
+python_training/surveymonkey/bin
+python_training/surveymonkey/include
+python_training/surveymonkey/pyenv.cfg
