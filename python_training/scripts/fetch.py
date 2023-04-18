@@ -3,7 +3,7 @@
 # Use arguments for specifying resources. (For example, -d for distro -m for memory, -c for CPU,
 #  -u for user info, -l for load average, -i for IP address).
 
-import os
+import socket
 import sys
 import re
 import subprocess
@@ -28,5 +28,5 @@ for i in sys.argv:
         case "-l":
             print("Load average:", open("/proc/loadavg").read())
         case "-i":
-            print("Internal IP:", subprocess.getoutput('ifconfig | grep "broadcast"').split(' ')[1])
+            print("Internal IP:", socket.gethostbyname(socket.gethostname()))
 
