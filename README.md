@@ -23,9 +23,7 @@ Theese scripts were written to be used with Linux and Bash. Though most of them 
 #
 ## PYTHON TRAINING
 
-### These scripts were written in Python 3.11. Compatibility with older versions is not guaranteed. The scripts are meant to be run like this:
-
-> python3 <script_name> <optional_arguments> 
+### These scripts were written in Python 3.11. Compatibility with older versions is not guaranteed.
 
 **accessReader.py** - Given a generic access log as a CLI argument, the script counts how many times the entry appears in the access log. The entries are counted by using the user agents. The sample access log can be found in ./python_training/scripts/test_files/
 
