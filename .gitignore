@@ -1,0 +1,4 @@
+python_training/*/lib
+python_training/*/bin
+python_training/*/include
+python_training/*/pyenv.cfg
