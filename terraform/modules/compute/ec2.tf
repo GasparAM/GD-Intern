@@ -2,25 +2,21 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
-module "network" {
-  source = "../network"
-}
 
 resource "aws_launch_template" "launch" {
   name_prefix            = "Terraform-ec"
   image_id               = "ami-0577c11149d377ab7"
   instance_type          = "t3.micro"
-  vpc_security_group_ids = [module.network.security_group.id]
+  vpc_security_group_ids = [var.security_group]
   user_data              = filebase64("${path.module}/script.sh")
 
-  tags = var.tags
 }
 
 resource "aws_autoscaling_group" "autoscale" {
   desired_capacity    = 3
   max_size            = 3
   min_size            = 3
-  vpc_zone_identifier = [module.network.subnet.id]
+  vpc_zone_identifier = [var.subnet]
 
   launch_template {
     id      = aws_launch_template.launch.id
@@ -55,18 +51,17 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type = "network"
 
   subnet_mapping {
-    subnet_id     = module.network.subnet.id
+    subnet_id     = var.subnet
     allocation_id = aws_eip.lb.id
   }
 
-  tags = var.tags
 }
 
 resource "aws_lb_target_group" "test" {
   name     = "terraform-target-group"
   port     = 80
   protocol = "TCP"
-  vpc_id   = module.network.vpc.id
+  vpc_id   = var.vpc
 }
 
 resource "aws_lb_listener" "front_end" {

@@ -16,14 +16,23 @@ terraform {
 
 provider "aws" {
   region  = "eu-north-1"
+  default_tags {
+    tags = var.tags
+  }
 }
 
 module "network" {
   source = "./modules/network"
+  cidr_block_subnet = var.cidr_block_subnet
+  cidr_block_vpc = var.cidr_block_vpc
+  ingress_ips = var.ingress_ips
 }
 
 module "compute" {
   source = "./modules/compute"
+  subnet = module.network.subnet.id
+  vpc = module.network.vpc.id
+  security_group = module.network.security_group.id
 }
 
 

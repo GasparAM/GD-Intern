@@ -1,10 +1,15 @@
-variable "Project" {
-  type    = string
-  default = "2023_internship_arm"
-
+variable "tags" {
+  type = map
 }
 
-variable "Owner" {
-  type    = string
-  default = "gavetisyan"
+variable "cidr_block_vpc" {
+  type = string
+}
+
+variable "cidr_block_subnet" {
+  type = string
+}
+
+variable "ingress_ips" {
+  type = list(string)
 }

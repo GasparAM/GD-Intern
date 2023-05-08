@@ -1,8 +1,11 @@
-variable "tags" {
-  type = map
-  default = {
-    Name    = "Terraform-test"
-    Project = "2023_internship_yvn"
-    Owner   = "gavetisyan"
-  }
+variable "security_group" {
+  type = string
+}
+
+variable "subnet" {
+  type = string
+}
+
+variable "vpc" {
+  type = string
 }

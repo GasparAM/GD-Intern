@@ -5,9 +5,6 @@ terraform {
 resource "aws_vpc" "tf" {
   cidr_block          = var.cidr_block_vpc
   instance_tenancy    = "default"
-  # main_route_table_id = aws_route_table.tf.id
-
-  tags = var.tags
 }
 
 resource "aws_main_route_table_association" "a" {
@@ -19,14 +16,10 @@ resource "aws_subnet" "tf" {
   vpc_id                  = aws_vpc.tf.id
   cidr_block              = var.cidr_block_subnet
   map_public_ip_on_launch = true
-
-  tags = var.tags
 }
 
 resource "aws_internet_gateway" "tf" {
   vpc_id = aws_vpc.tf.id
-
-  tags = var.tags
 }
 
 resource "aws_route_table" "tf" {
@@ -36,8 +29,6 @@ resource "aws_route_table" "tf" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.tf.id
   }
-
-  tags = var.tags
 }
 
 resource "aws_security_group" "tf" {
@@ -74,6 +65,4 @@ resource "aws_security_group" "tf" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-
-  tags = var.tags
 }
