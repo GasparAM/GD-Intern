@@ -1,0 +1,2 @@
+appversion: 3.0.3
+javaargs: "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
