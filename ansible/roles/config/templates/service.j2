@@ -1,0 +1,13 @@
+[Unit]
+Description=Service to start spring-petclinic
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/bin/java {{javaargs}} -jar {{ansible_facts['user_dir']}}/spring-petclinic-{{appversion}}.jar
+
+[Install]
+WantedBy=multi-user.target

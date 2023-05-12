@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  roles:
+    # - ../roles/setup
+    - ../roles/config
+    - ../roles/server
