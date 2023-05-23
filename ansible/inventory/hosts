@@ -1,0 +1,5 @@
+[centos]
+192.168.56.4 ansible_ssh_user=aziz arch=linux-x64
+
+[ubuntu]
+192.168.56.2

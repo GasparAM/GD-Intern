@@ -1,0 +1,75 @@
+---
+
+- hosts: all
+  vars:
+    appversion: 3.0.3
+    javaversion: 17
+    javaargs: "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
+  tasks:
+
+  - name: Download java CentOs
+    become: true
+    get_url: 
+      url: "https://download.oracle.com/java/{{javaversion}}/latest/jdk-{{javaversion}}_{{arch}}_bin.rpm"
+      dest: /tmp
+    when: ansible_facts['os_family']|lower == 'redhat'
+
+  - name: Install Java for CentOS
+    become: true
+    yum:
+      name: "/tmp/jdk-{{javaversion}}_linux-x64_bin.rpm"
+    when: ansible_facts['os_family']|lower == 'redhat'
+
+  - name: Install nginx for CentOS
+    become: true
+    yum:
+      name: 
+        - nginx
+    when: ansible_facts['os_family']|lower == 'redhat'
+  
+  - name: Install Java for Ubuntu
+    become: true
+    apt:
+      name: "openjdk-{{javaversion}}-jre-headless"
+    when: ansible_facts['os_family']|lower == 'debian'
+
+  - name: Install nginx for Ubuntu
+    become: true
+    apt:
+      name: nginx
+    when: ansible_facts['os_family']|lower == 'debian'
+
+  - name: Copy spring-petclinic to guest
+    copy:
+      src: "~/spring-petclinic/target/spring-petclinic-{{appversion}}.jar"
+      dest: ~/
+
+  - name: Copy nginx config
+    become: true
+    copy:
+      src: ../spring-petclinic.conf
+      dest: /etc/nginx/sites-enabled/spring.conf
+
+  - name: Create service
+    become: true
+    template:
+      src: ../service.j2
+      dest: /etc/systemd/system/spring-petclinic.service
+
+  - name: Start petclinic service
+    become: true
+    systemd:
+      name: spring-petclinic
+      enabled: true
+      state: started
+  
+  - name: Start nginx service
+    become: true
+    systemd:
+      name: nginx
+      enabled: true
+      state: started
+      
+
+  # - name: Run spring-petclinic
+  #   shell: "java {{args}} -jar spring-petclinic-{{appversion}}.jar &"

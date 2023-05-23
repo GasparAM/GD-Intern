@@ -1,0 +1,33 @@
+---
+
+- name: Download java CentOs
+  become: true
+  get_url: 
+    url: "https://download.oracle.com/java/{{javaversion}}/latest/jdk-{{javaversion}}_{{arch}}_bin.rpm"
+    dest: /tmp
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install Java for CentOS
+  become: true
+  yum:
+    name: "/tmp/jdk-{{javaversion}}_linux-x64_bin.rpm"
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install nginx for CentOS
+  become: true
+  yum:
+    name: 
+      - nginx
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install Java for Ubuntu
+  become: true
+  apt:
+    name: "openjdk-{{javaversion}}-jre-headless"
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install nginx for Ubuntu
+  become: true
+  apt:
+    name: nginx
+  when: ansible_facts['os_family']|lower == 'debian'

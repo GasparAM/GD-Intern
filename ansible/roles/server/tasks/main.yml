@@ -1,0 +1,13 @@
+- name: Start petclinic service
+  become: true
+  systemd:
+    name: spring-petclinic
+    enabled: true
+    state: started
+
+- name: Start nginx service
+  become: true
+  systemd:
+    name: nginx
+    enabled: true
+    state: started
